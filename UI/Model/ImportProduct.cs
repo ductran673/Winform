@@ -12,5 +12,7 @@ namespace UI.Model
         public string ProductName { get; set; }
         public int PriceProduct { get; set; }
         public int Quantity { get; set; }
+        public int UnitID { get; set; }
+        public int TotalPrice { get { return Quantity* PriceProduct;  } }
     }
 }

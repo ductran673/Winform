@@ -14,6 +14,7 @@ namespace UI
         private bool btnDelete = false;
         private int IDADMIN;
         private int UnitID;
+        private int total;
         public ImportForm()
         {
             InitializeComponent();
@@ -52,7 +53,12 @@ namespace UI
             importProducts.Add(new ImportProduct { ProductID = productID, ProductName = productName, PriceProduct = Convert.ToInt32(maskedTextBoxPrice.Text), Quantity = Convert.ToInt32(maskedTextBoxQuantity.Text), UnitID = UnitID});
             dataTable.Rows.Add(productID, productName, Convert.ToInt32(maskedTextBoxPrice.Text), Convert.ToInt32(maskedTextBoxQuantity.Text));
             dataGridView1.DataSource = dataTable;
-            toolTip1.Show("thêm thanh công", button1, 0, 0, 1000);
+            toolTip1.Show("Thêm thành công", button1, button1.Width, 0, 1000);
+            foreach(ImportProduct i in importProducts)
+            {
+                total += i.TotalPrice;
+            }
+            textBox1.Text = total.ToString() + "đ";
         }
 
         private void button3_Click(object sender, EventArgs e)
