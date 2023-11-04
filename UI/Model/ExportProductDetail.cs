@@ -8,6 +8,7 @@ namespace UI.Model
 {
     internal class ExportProductDetail
     {
+        public int ExportProductDetailID { get; set; }
         public int ExportBillDetailID { get; set; }
         public int Quantity { get; set; }
         public int StockDetailID { get; set; }

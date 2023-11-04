@@ -24,6 +24,7 @@ namespace UI.Model
         public string? Email { get; set; }
         [Column(TypeName = "char(10)")]
         public string? Phone { get; set; }
+        public byte Role { get; set; }
         public ICollection<ImportBill> ImportBills { get; set; }
         public ICollection<ExportBill> exportBills { get; set; }
 
