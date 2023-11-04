@@ -12,6 +12,7 @@ namespace UI.Model
     {
         public Customer() { 
             this.importBills = new HashSet<ImportBill>();
+            this.exportBills = new HashSet<ExportBill>();
         }
         public int CustomerID { get; set; }
         [Column(TypeName = "nvarchar(100)")]
@@ -24,5 +25,6 @@ namespace UI.Model
         [Column(TypeName = "char(10)")]
         public String Phone { get; set; }
         public ICollection<ImportBill> importBills { get; set; }
+        public ICollection<ExportBill> exportBills { get; set; } 
     }
 }

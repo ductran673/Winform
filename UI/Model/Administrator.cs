@@ -11,7 +11,8 @@ namespace UI.Model
     internal class Administrator
     {
         public Administrator() { 
-            this.ImportBill = new HashSet<ImportBill>();
+            this.ImportBills = new HashSet<ImportBill>();
+            this.exportBills= new HashSet<ExportBill>();
         }
         public int AdministratorID { get; set; }
         [Column(TypeName = "char(20)")]
@@ -23,6 +24,8 @@ namespace UI.Model
         public string? Email { get; set; }
         [Column(TypeName = "char(10)")]
         public string? Phone { get; set; }
-        public ICollection<ImportBill> ImportBill { get; set; }
+        public ICollection<ImportBill> ImportBills { get; set; }
+        public ICollection<ExportBill> exportBills { get; set; }
+
     }
 }

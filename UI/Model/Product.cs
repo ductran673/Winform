@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,8 @@ namespace UI.Model
     internal class Product
     {
         public Product() {
-            
+            this.StockDetails = new HashSet<StockDetail>();
+            this.ImportDetails= new HashSet<ImportDetail>();
         }
         public long ProductID { get; set; }
         [Column(TypeName = ("nvarchar(100)"))]
@@ -20,6 +22,7 @@ namespace UI.Model
         public string? Description { get; set; }
         public int UnitID { get; set; }
         public Unit Unit { get; set; }
-        public StockDetail StockDetail { get; set; }
+        public ICollection<StockDetail> StockDetails { get; set; }
+        public ICollection<ImportDetail> ImportDetails { get; set; }
     }
 }

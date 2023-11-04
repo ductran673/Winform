@@ -9,6 +9,9 @@ namespace UI.Model
 {
     internal class ImportBill
     {
+        public ImportBill() {
+            this.ImportDetails = new HashSet<ImportDetail>();  
+        }
         public int ImportBillID { get; set; }
         [Column(TypeName = "nvarchar(255)")]
         public string? Description { get; set;}
@@ -18,5 +21,6 @@ namespace UI.Model
         public int StockID { get; set; }
         public Administrator Administrator { get; set; }
         public Stock Stock { get; set; }
+        public ICollection<ImportDetail> ImportDetails { get; set; }
     }
 }
