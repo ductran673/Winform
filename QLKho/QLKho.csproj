@@ -46,16 +46,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="fCustomerStatistic.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="fCustomerStatistic.Designer.cs">
+      <DependentUpon>fCustomerStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fMain.Designer.cs">
+      <DependentUpon>fMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fProduceStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fProduceStatistic.Designer.cs">
+      <DependentUpon>fProduceStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fRemainStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fRemainStatistic.Designer.cs">
+      <DependentUpon>fRemainStatistic.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="fCustomerStatistic.resx">
+      <DependentUpon>fCustomerStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fMain.resx">
+      <DependentUpon>fMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fProduceStatistic.resx">
+      <DependentUpon>fProduceStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fRemainStatistic.resx">
+      <DependentUpon>fRemainStatistic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
