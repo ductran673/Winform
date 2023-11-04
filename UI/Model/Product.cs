@@ -20,8 +20,7 @@ namespace UI.Model
         public int Price { get; set; }
         [Column(TypeName = "nvarchar(200)")]
         public string? Description { get; set; }
-        public int UnitID { get; set; }
-        public Unit Unit { get; set; }
+        
         public ICollection<StockDetail> StockDetails { get; set; }
         public ICollection<ImportDetail> ImportDetails { get; set; }
     }

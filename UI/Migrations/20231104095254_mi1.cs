@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace UI.Migrations
 {
     /// <inheritdoc />
-    public partial class migration1 : Migration
+    public partial class mi1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,6 +44,21 @@ namespace UI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.CustomerID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    ProductID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(200)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.ProductID);
                 });
 
             migrationBuilder.CreateTable(
@@ -111,7 +126,7 @@ namespace UI.Migrations
                     DateTimeDate = table.Column<DateTime>(type: "Date", nullable: false),
                     AdministratorID = table.Column<int>(type: "int", nullable: false),
                     StockID = table.Column<int>(type: "int", nullable: false),
-                    CustomerID = table.Column<int>(type: "int", nullable: true)
+                    CustomerID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -126,7 +141,8 @@ namespace UI.Migrations
                         name: "FK_ImportBills_Customers_CustomerID",
                         column: x => x.CustomerID,
                         principalTable: "Customers",
-                        principalColumn: "CustomerID");
+                        principalColumn: "CustomerID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ImportBills_Stocks_StockID",
                         column: x => x.StockID,
@@ -136,21 +152,33 @@ namespace UI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "StockDetails",
                 columns: table => new
                 {
-                    ProductID = table.Column<long>(type: "bigint", nullable: false)
+                    StockDetailID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    ProductID = table.Column<long>(type: "bigint", nullable: false),
+                    StockID = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
                     UnitID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ProductID);
+                    table.PrimaryKey("PK_StockDetails", x => x.StockDetailID);
                     table.ForeignKey(
-                        name: "FK_Products_Units_UnitID",
+                        name: "FK_StockDetails_Products_ProductID",
+                        column: x => x.ProductID,
+                        principalTable: "Products",
+                        principalColumn: "ProductID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StockDetails_Stocks_StockID",
+                        column: x => x.StockID,
+                        principalTable: "Stocks",
+                        principalColumn: "StockID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StockDetails_Units_UnitID",
                         column: x => x.UnitID,
                         principalTable: "Units",
                         principalColumn: "UnitID",
@@ -206,33 +234,6 @@ namespace UI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StockDetails",
-                columns: table => new
-                {
-                    StockDetailID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductID = table.Column<long>(type: "bigint", nullable: false),
-                    StockID = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StockDetails", x => x.StockDetailID);
-                    table.ForeignKey(
-                        name: "FK_StockDetails_Products_ProductID",
-                        column: x => x.ProductID,
-                        principalTable: "Products",
-                        principalColumn: "ProductID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_StockDetails_Stocks_StockID",
-                        column: x => x.StockID,
-                        principalTable: "Stocks",
-                        principalColumn: "StockID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ExportProductDetails",
                 columns: table => new
                 {
@@ -265,6 +266,30 @@ namespace UI.Migrations
                 values: new object[] { 1, "Conggioi.pro264@gmail.com", "admin", "0367093723", (byte)1, "admin" });
 
             migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "ProductID", "Description", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1L, "Bút bi Thiên Long 20Cây/hộp màu xanh", "Bút bi Thiên Long", 0 },
+                    { 2L, "Thước kẻ 20cm hộp 30 cái", "Thước kẻ 20cm", 0 },
+                    { 3L, "Giấy in văn phòng 1 thùng 20 xấp", "Giấy in văn phòng", 0 },
+                    { 4L, "Bút lông viết bảng (màu xanh) hộp 10 cái", "Bút lông viết bảng (màu xanh)", 0 },
+                    { 5L, "Gôm/Bút tẩy xóa", "Gôm/Bút tẩy xóa", 0 },
+                    { 6L, "Dao kéo, Băng keo", "Dao kéo, Băng keo", 0 },
+                    { 7L, "Túi đựng hồ sơ và tài liệu", "Túi đựng hồ sơ và tài liệu", 0 },
+                    { 8L, "Sổ tay học từ vựng", "Sổ tay học từ vựng", 0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Stocks",
+                columns: new[] { "StockID", "Address", "Name" },
+                values: new object[,]
+                {
+                    { 1, "639 Phạm Văn Bạch, Phường 15, Tân Bình, TPHCM", "Kho A" },
+                    { 2, "200 Dương Đình Hội, Phường Phước Long B, Q.9, TPHCM", "Kho B" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Units",
                 columns: new[] { "UnitID", "Name" },
                 values: new object[,]
@@ -275,21 +300,6 @@ namespace UI.Migrations
                     { 4, "Chiếc" },
                     { 5, "Ram" },
                     { 6, "Xấp" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "ProductID", "Description", "Name", "Price", "UnitID" },
-                values: new object[,]
-                {
-                    { 1L, "Bút bi Thiên Long 20Cây/hộp màu xanh", "Bút bi Thiên Long", 0, 1 },
-                    { 2L, "Thước kẻ 20cm hộp 30 cái", "Thước kẻ 20cm", 0, 1 },
-                    { 3L, "Giấy in văn phòng 1 thùng 20 xấp", "Giấy in văn phòng", 0, 3 },
-                    { 4L, "Bút lông viết bảng (màu xanh) hộp 10 cái", "Bút lông viết bảng (màu xanh)", 0, 1 },
-                    { 5L, "Gôm/Bút tẩy xóa", "Gôm/Bút tẩy xóa", 0, 3 },
-                    { 6L, "Dao kéo, Băng keo", "Dao kéo, Băng keo", 0, 2 },
-                    { 7L, "Túi đựng hồ sơ và tài liệu", "Túi đựng hồ sơ và tài liệu", 0, 2 },
-                    { 8L, "Sổ tay học từ vựng", "Sổ tay học từ vựng", 0, 5 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -343,11 +353,6 @@ namespace UI.Migrations
                 column: "ProductID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_UnitID",
-                table: "Products",
-                column: "UnitID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_StockDetails_ProductID",
                 table: "StockDetails",
                 column: "ProductID");
@@ -356,6 +361,11 @@ namespace UI.Migrations
                 name: "IX_StockDetails_StockID",
                 table: "StockDetails",
                 column: "StockID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StockDetails_UnitID",
+                table: "StockDetails",
+                column: "UnitID");
         }
 
         /// <inheritdoc />
@@ -383,6 +393,9 @@ namespace UI.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
+                name: "Units");
+
+            migrationBuilder.DropTable(
                 name: "Stocks");
 
             migrationBuilder.DropTable(
@@ -390,9 +403,6 @@ namespace UI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
-
-            migrationBuilder.DropTable(
-                name: "Units");
         }
     }
 }

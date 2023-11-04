@@ -12,8 +12,8 @@ using UI;
 namespace UI.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231104062558_migration1")]
-    partial class migration1
+    [Migration("20231104095254_mi1")]
+    partial class mi1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -182,7 +182,7 @@ namespace UI.Migrations
                     b.Property<int>("AdministratorID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CustomerID")
+                    b.Property<int>("CustomerID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateTimeDate")
@@ -252,12 +252,7 @@ namespace UI.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<int>("UnitID")
-                        .HasColumnType("int");
-
                     b.HasKey("ProductID");
-
-                    b.HasIndex("UnitID");
 
                     b.ToTable("Products");
 
@@ -267,64 +262,56 @@ namespace UI.Migrations
                             ProductID = 1L,
                             Description = "Bút bi Thiên Long 20Cây/hộp màu xanh",
                             Name = "Bút bi Thiên Long",
-                            Price = 0,
-                            UnitID = 1
+                            Price = 0
                         },
                         new
                         {
                             ProductID = 2L,
                             Description = "Thước kẻ 20cm hộp 30 cái",
                             Name = "Thước kẻ 20cm",
-                            Price = 0,
-                            UnitID = 1
+                            Price = 0
                         },
                         new
                         {
                             ProductID = 3L,
                             Description = "Giấy in văn phòng 1 thùng 20 xấp",
                             Name = "Giấy in văn phòng",
-                            Price = 0,
-                            UnitID = 3
+                            Price = 0
                         },
                         new
                         {
                             ProductID = 4L,
                             Description = "Bút lông viết bảng (màu xanh) hộp 10 cái",
                             Name = "Bút lông viết bảng (màu xanh)",
-                            Price = 0,
-                            UnitID = 1
+                            Price = 0
                         },
                         new
                         {
                             ProductID = 5L,
                             Description = "Gôm/Bút tẩy xóa",
                             Name = "Gôm/Bút tẩy xóa",
-                            Price = 0,
-                            UnitID = 3
+                            Price = 0
                         },
                         new
                         {
                             ProductID = 6L,
                             Description = "Dao kéo, Băng keo",
                             Name = "Dao kéo, Băng keo",
-                            Price = 0,
-                            UnitID = 2
+                            Price = 0
                         },
                         new
                         {
                             ProductID = 7L,
                             Description = "Túi đựng hồ sơ và tài liệu",
                             Name = "Túi đựng hồ sơ và tài liệu",
-                            Price = 0,
-                            UnitID = 2
+                            Price = 0
                         },
                         new
                         {
                             ProductID = 8L,
                             Description = "Sổ tay học từ vựng",
                             Name = "Sổ tay học từ vựng",
-                            Price = 0,
-                            UnitID = 5
+                            Price = 0
                         });
                 });
 
@@ -347,6 +334,20 @@ namespace UI.Migrations
                     b.HasKey("StockID");
 
                     b.ToTable("Stocks");
+
+                    b.HasData(
+                        new
+                        {
+                            StockID = 1,
+                            Address = "639 Phạm Văn Bạch, Phường 15, Tân Bình, TPHCM",
+                            Name = "Kho A"
+                        },
+                        new
+                        {
+                            StockID = 2,
+                            Address = "200 Dương Đình Hội, Phường Phước Long B, Q.9, TPHCM",
+                            Name = "Kho B"
+                        });
                 });
 
             modelBuilder.Entity("UI.Model.StockDetail", b =>
@@ -366,11 +367,16 @@ namespace UI.Migrations
                     b.Property<int>("StockID")
                         .HasColumnType("int");
 
+                    b.Property<int>("UnitID")
+                        .HasColumnType("int");
+
                     b.HasKey("StockDetailID");
 
                     b.HasIndex("ProductID");
 
                     b.HasIndex("StockID");
+
+                    b.HasIndex("UnitID");
 
                     b.ToTable("StockDetails");
                 });
@@ -481,9 +487,11 @@ namespace UI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UI.Model.Customer", null)
+                    b.HasOne("UI.Model.Customer", "Customer")
                         .WithMany("importBills")
-                        .HasForeignKey("CustomerID");
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("UI.Model.Stock", "Stock")
                         .WithMany("ImportBill")
@@ -492,6 +500,8 @@ namespace UI.Migrations
                         .IsRequired();
 
                     b.Navigation("Administrator");
+
+                    b.Navigation("Customer");
 
                     b.Navigation("Stock");
                 });
@@ -515,17 +525,6 @@ namespace UI.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("UI.Model.Product", b =>
-                {
-                    b.HasOne("UI.Model.Unit", "Unit")
-                        .WithMany("Products")
-                        .HasForeignKey("UnitID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Unit");
-                });
-
             modelBuilder.Entity("UI.Model.StockDetail", b =>
                 {
                     b.HasOne("UI.Model.Product", "Product")
@@ -540,9 +539,17 @@ namespace UI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("UI.Model.Unit", "Unit")
+                        .WithMany("StockDetails")
+                        .HasForeignKey("UnitID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Product");
 
                     b.Navigation("Stock");
+
+                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("UI.Model.Administrator", b =>
@@ -590,7 +597,7 @@ namespace UI.Migrations
 
             modelBuilder.Entity("UI.Model.Unit", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("StockDetails");
                 });
 #pragma warning restore 612, 618
         }

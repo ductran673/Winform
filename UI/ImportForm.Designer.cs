@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class Form1
+    partial class ImportForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.maskedTextBoxDescription = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxPhone = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.maskedTextBoxAddress = new System.Windows.Forms.MaskedTextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,25 +52,22 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxPrice = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxQuantity = new System.Windows.Forms.MaskedTextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxUnit = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.comboBoxProduct = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -83,7 +81,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.maskedTextBoxDescription);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.maskedTextBox4);
+            this.panel1.Controls.Add(this.maskedTextBoxPhone);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.maskedTextBoxAddress);
             this.panel1.Controls.Add(this.label3);
@@ -103,6 +101,7 @@
             this.maskedTextBoxDescription.Name = "maskedTextBoxDescription";
             this.maskedTextBoxDescription.Size = new System.Drawing.Size(670, 27);
             this.maskedTextBoxDescription.TabIndex = 17;
+            this.maskedTextBoxDescription.Text = "chả có mô tả";
             // 
             // label5
             // 
@@ -114,13 +113,14 @@
             this.label5.TabIndex = 16;
             this.label5.Text = "Mô tả";
             // 
-            // maskedTextBox4
+            // maskedTextBoxPhone
             // 
-            this.maskedTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.maskedTextBox4.Location = new System.Drawing.Point(622, 64);
-            this.maskedTextBox4.Name = "maskedTextBox4";
-            this.maskedTextBox4.Size = new System.Drawing.Size(197, 27);
-            this.maskedTextBox4.TabIndex = 15;
+            this.maskedTextBoxPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.maskedTextBoxPhone.Location = new System.Drawing.Point(622, 64);
+            this.maskedTextBoxPhone.Name = "maskedTextBoxPhone";
+            this.maskedTextBoxPhone.Size = new System.Drawing.Size(197, 27);
+            this.maskedTextBoxPhone.TabIndex = 15;
+            this.maskedTextBoxPhone.Text = "0367093823";
             // 
             // label4
             // 
@@ -139,6 +139,7 @@
             this.maskedTextBoxAddress.Name = "maskedTextBoxAddress";
             this.maskedTextBoxAddress.Size = new System.Drawing.Size(358, 27);
             this.maskedTextBoxAddress.TabIndex = 13;
+            this.maskedTextBoxAddress.Text = "2000 dsdadasksdkasd";
             // 
             // label3
             // 
@@ -157,6 +158,7 @@
             this.maskedTextBoxEmail.Name = "maskedTextBoxEmail";
             this.maskedTextBoxEmail.Size = new System.Drawing.Size(306, 27);
             this.maskedTextBoxEmail.TabIndex = 11;
+            this.maskedTextBoxEmail.Text = "conggioi@gmail.com";
             // 
             // maskedTextBoxSuplier
             // 
@@ -165,6 +167,7 @@
             this.maskedTextBoxSuplier.Name = "maskedTextBoxSuplier";
             this.maskedTextBoxSuplier.Size = new System.Drawing.Size(268, 27);
             this.maskedTextBoxSuplier.TabIndex = 10;
+            this.maskedTextBoxSuplier.Text = "Nguyễn Công Giới";
             // 
             // label2
             // 
@@ -228,6 +231,7 @@
             this.comboBoxStock.Name = "comboBoxStock";
             this.comboBoxStock.Size = new System.Drawing.Size(438, 28);
             this.comboBoxStock.TabIndex = 19;
+            this.comboBoxStock.SelectedIndexChanged += new System.EventHandler(this.comboBoxStock_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -279,21 +283,17 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ProductID,
-            this.ProductName,
-            this.PriceProduct,
-            this.Quantity,
-            this.Delete});
             this.dataGridView1.Location = new System.Drawing.Point(12, 175);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 29;
             this.dataGridView1.Size = new System.Drawing.Size(831, 586);
             this.dataGridView1.TabIndex = 17;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
             // panel3
             // 
@@ -317,14 +317,57 @@
             this.panel5.Size = new System.Drawing.Size(557, 368);
             this.panel5.TabIndex = 1;
             // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button3.Location = new System.Drawing.Point(131, 162);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(317, 44);
+            this.button3.TabIndex = 40;
+            this.button3.Text = "Đóng";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(131, 91);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(317, 44);
+            this.button2.TabIndex = 39;
+            this.button2.Text = "Lưu";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(131, 19);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(421, 27);
+            this.textBox1.TabIndex = 38;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label14.ForeColor = System.Drawing.Color.Brown;
+            this.label14.Location = new System.Drawing.Point(5, 18);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(135, 25);
+            this.label14.TabIndex = 32;
+            this.label14.Text = "Thành tiền: ";
+            // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.buttonDelete);
             this.panel4.Controls.Add(this.button1);
-            this.panel4.Controls.Add(this.maskedTextBox1);
+            this.panel4.Controls.Add(this.maskedTextBoxPrice);
             this.panel4.Controls.Add(this.maskedTextBoxQuantity);
             this.panel4.Controls.Add(this.label12);
-            this.panel4.Controls.Add(this.comboBox1);
+            this.panel4.Controls.Add(this.comboBoxUnit);
             this.panel4.Controls.Add(this.label13);
             this.panel4.Controls.Add(this.label11);
             this.panel4.Controls.Add(this.comboBoxProduct);
@@ -334,23 +377,36 @@
             this.panel4.Size = new System.Drawing.Size(557, 204);
             this.panel4.TabIndex = 0;
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Enabled = false;
+            this.buttonDelete.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonDelete.Location = new System.Drawing.Point(120, 150);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(132, 39);
+            this.buttonDelete.TabIndex = 38;
+            this.buttonDelete.Text = "Xóa";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(178, 142);
+            this.button1.Location = new System.Drawing.Point(363, 150);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(317, 44);
+            this.button1.Size = new System.Drawing.Size(132, 39);
             this.button1.TabIndex = 37;
             this.button1.Text = "Thêm";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // maskedTextBox1
+            // maskedTextBoxPrice
             // 
-            this.maskedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.maskedTextBox1.Location = new System.Drawing.Point(120, 99);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(196, 27);
-            this.maskedTextBox1.TabIndex = 36;
+            this.maskedTextBoxPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.maskedTextBoxPrice.Location = new System.Drawing.Point(120, 99);
+            this.maskedTextBoxPrice.Name = "maskedTextBoxPrice";
+            this.maskedTextBoxPrice.Size = new System.Drawing.Size(196, 27);
+            this.maskedTextBoxPrice.TabIndex = 36;
             // 
             // maskedTextBoxQuantity
             // 
@@ -370,13 +426,14 @@
             this.label12.TabIndex = 34;
             this.label12.Text = "Số lượng";
             // 
-            // comboBox1
+            // comboBoxUnit
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(120, 52);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(157, 28);
-            this.comboBox1.TabIndex = 33;
+            this.comboBoxUnit.FormattingEnabled = true;
+            this.comboBoxUnit.Location = new System.Drawing.Point(120, 52);
+            this.comboBoxUnit.Name = "comboBoxUnit";
+            this.comboBoxUnit.Size = new System.Drawing.Size(157, 28);
+            this.comboBoxUnit.TabIndex = 33;
+            this.comboBoxUnit.SelectedIndexChanged += new System.EventHandler(this.comboBoxUnit_SelectedIndexChanged);
             // 
             // label13
             // 
@@ -405,6 +462,7 @@
             this.comboBoxProduct.Name = "comboBoxProduct";
             this.comboBoxProduct.Size = new System.Drawing.Size(438, 28);
             this.comboBoxProduct.TabIndex = 30;
+            this.comboBoxProduct.SelectedIndexChanged += new System.EventHandler(this.comboBoxProduct_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -416,79 +474,7 @@
             this.label10.TabIndex = 29;
             this.label10.Text = "Sản phẩm";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label14.ForeColor = System.Drawing.Color.Brown;
-            this.label14.Location = new System.Drawing.Point(5, 18);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(135, 25);
-            this.label14.TabIndex = 32;
-            this.label14.Text = "Thành tiền: ";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(131, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(421, 27);
-            this.textBox1.TabIndex = 38;
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(131, 91);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(317, 44);
-            this.button2.TabIndex = 39;
-            this.button2.Text = "Lưu";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(131, 162);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(317, 44);
-            this.button3.TabIndex = 40;
-            this.button3.Text = "Đóng";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // ProductID
-            // 
-            this.ProductID.HeaderText = "Mã sản phẩm";
-            this.ProductID.MinimumWidth = 6;
-            this.ProductID.Name = "ProductID";
-            // 
-            // ProductName
-            // 
-            this.ProductName.HeaderText = "Tên sản phẩm";
-            this.ProductName.MinimumWidth = 6;
-            this.ProductName.Name = "ProductName";
-            // 
-            // PriceProduct
-            // 
-            this.PriceProduct.HeaderText = "Giá tiền";
-            this.PriceProduct.MinimumWidth = 6;
-            this.PriceProduct.Name = "PriceProduct";
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Số lượng";
-            this.Quantity.MinimumWidth = 6;
-            this.Quantity.Name = "Quantity";
-            // 
-            // Delete
-            // 
-            this.Delete.HeaderText = "Delete";
-            this.Delete.MinimumWidth = 6;
-            this.Delete.Name = "Delete";
-            this.Delete.Text = "Delete";
-            this.Delete.UseColumnTextForButtonValue = true;
-            // 
-            // Form1
+            // ImportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -497,9 +483,10 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "Form1";
+            this.Name = "ImportForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đơn nhập hàng";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImportForm_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -518,7 +505,7 @@
         #endregion
 
         private Panel panel1;
-        private MaskedTextBox maskedTextBox4;
+        private MaskedTextBox maskedTextBoxPhone;
         private Label label4;
         private MaskedTextBox maskedTextBoxAddress;
         private Label label3;
@@ -542,10 +529,10 @@
         private Panel panel5;
         private Panel panel4;
         private Button button1;
-        private MaskedTextBox maskedTextBox1;
+        private MaskedTextBox maskedTextBoxPrice;
         private MaskedTextBox maskedTextBoxQuantity;
         private Label label12;
-        private ComboBox comboBox1;
+        private ComboBox comboBoxUnit;
         private Label label13;
         private Label label11;
         private ComboBox comboBoxProduct;
@@ -554,10 +541,7 @@
         private Button button2;
         private TextBox textBox1;
         private Label label14;
-        private DataGridViewTextBoxColumn ProductID;
-        private DataGridViewTextBoxColumn ProductName;
-        private DataGridViewTextBoxColumn PriceProduct;
-        private DataGridViewTextBoxColumn Quantity;
-        private DataGridViewButtonColumn Delete;
+        private ToolTip toolTip1;
+        private Button buttonDelete;
     }
 }

@@ -15,6 +15,8 @@ namespace UI.Model
         public long ProductID { get; set; }
         public int StockID { get; set; }
         public int Quantity { get; set; }
+        public int UnitID { get; set; }
+        public Unit Unit { get; set; }
         public Product Product { get; set; }
         public Stock Stock { get; set; }
         public ICollection<ExportProductDetail> ExportProducts { get; set; }

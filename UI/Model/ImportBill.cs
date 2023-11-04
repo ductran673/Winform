@@ -19,6 +19,8 @@ namespace UI.Model
         public DateTime DateTimeDate { get; set; }
         public int AdministratorID { get; set; }
         public int StockID { get; set; }
+        public int CustomerID { get; set; }
+        public Customer Customer { get; set; }
         public Administrator Administrator { get; set; }
         public Stock Stock { get; set; }
         public ICollection<ImportDetail> ImportDetails { get; set; }

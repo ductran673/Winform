@@ -10,11 +10,11 @@ namespace UI.Model
     internal class Unit
     {
         public Unit() {
-            this.Products = new HashSet<Product>();
+            this.StockDetails = new HashSet<StockDetail>();
         }
         public int UnitID { get; set; }
         [Column(TypeName = "nvarchar(20)")]
         public string Name { get; set; }
-        public ICollection<Product> Products { get; set; }
+        public ICollection<StockDetail> StockDetails { get; set; }
     }
 }
