@@ -17,7 +17,7 @@ namespace UI
             InitializeComponent();
         }
 
-        
+
 
         private void thôngTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -38,7 +38,20 @@ namespace UI
                 return;
 
             }
-            ImportForm  f = new ImportForm();
+            ImportForm f = new ImportForm();
+            f.MdiParent = this;
+            f.Show();
+
+        }
+
+        private void quảnLýToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Utility.IsOpeningForm("fManageProduct"))
+            {
+                return;
+
+            }
+            fManageProduct f = new fManageProduct();
             f.MdiParent = this;
             f.Show();
 

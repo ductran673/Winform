@@ -59,6 +59,7 @@
             quảnLýToolStripMenuItem.Name = "quảnLýToolStripMenuItem";
             quảnLýToolStripMenuItem.Size = new Size(79, 24);
             quảnLýToolStripMenuItem.Text = "Quản Lý ";
+            quảnLýToolStripMenuItem.Click += quảnLýToolStripMenuItem_Click;
             // 
             // thôngTinToolStripMenuItem
             // 

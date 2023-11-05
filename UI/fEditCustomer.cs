@@ -17,7 +17,7 @@ namespace UI
     {
         Customer customer;
         long CustomerID;
-        Context db = new Context();
+        Context ConnectDB = new Context();
         public fEditCustomer(long CustomerID)
         {
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace UI
                 customer.Phone = txtPhone.Text;
                 customer.Email = txtEmail.Text;
 
-                db.SaveChanges(); //Lưu các thay đổi vào csdl
+                ConnectDB.SaveChanges(); //Lưu các thay đổi vào csdl
                 toolTip1.Show("Lưu thành công!", btSave, 0, 0, 1000);
                 //btClose.PerformClick();
                 btClose.Focus();
@@ -131,7 +131,7 @@ namespace UI
 
         private void fEditCustomer_Load(object sender, EventArgs e)
         {
-            customer = db.Customers.Single(p => p.CustomerID == CustomerID);
+            customer = ConnectDB.Customers.Single(p => p.CustomerID == CustomerID);
             Text += " - Mã KH " + customer.CustomerID.ToString();
             txtName.Text = customer.Name;
             txtAddress.Text = customer.Address;
