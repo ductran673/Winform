@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace UI.Migrations
 {
     /// <inheritdoc />
-    public partial class mi1 : Migration
+    public partial class m1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,6 +19,7 @@ namespace UI.Migrations
                 {
                     AdministratorID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     UserName = table.Column<string>(type: "char(20)", nullable: false),
                     Password = table.Column<string>(type: "char(16)", nullable: false),
                     Email = table.Column<string>(type: "varchar(50)", nullable: true),
@@ -214,7 +215,8 @@ namespace UI.Migrations
                     ImportBillID = table.Column<int>(type: "int", nullable: false),
                     ProductID = table.Column<long>(type: "bigint", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    UnitID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -230,6 +232,12 @@ namespace UI.Migrations
                         column: x => x.ProductID,
                         principalTable: "Products",
                         principalColumn: "ProductID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ImportDetail_Units_UnitID",
+                        column: x => x.UnitID,
+                        principalTable: "Units",
+                        principalColumn: "UnitID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -262,8 +270,8 @@ namespace UI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Administrators",
-                columns: new[] { "AdministratorID", "Email", "Password", "Phone", "Role", "UserName" },
-                values: new object[] { 1, "Conggioi.pro264@gmail.com", "admin", "0367093723", (byte)1, "admin" });
+                columns: new[] { "AdministratorID", "Email", "Name", "Password", "Phone", "Role", "UserName" },
+                values: new object[] { 1, "Conggioi.pro264@gmail.com", "Nguyễn Công Giới", "admin", "0367093723", (byte)1, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Products",
@@ -351,6 +359,11 @@ namespace UI.Migrations
                 name: "IX_ImportDetail_ProductID",
                 table: "ImportDetail",
                 column: "ProductID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ImportDetail_UnitID",
+                table: "ImportDetail",
+                column: "UnitID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StockDetails_ProductID",

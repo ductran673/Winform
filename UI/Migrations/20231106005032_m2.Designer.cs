@@ -12,8 +12,8 @@ using UI;
 namespace UI.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231104095254_mi1")]
-    partial class mi1
+    [Migration("20231106005032_m2")]
+    partial class m2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,10 @@ namespace UI.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -59,6 +63,7 @@ namespace UI.Migrations
                         {
                             AdministratorID = 1,
                             Email = "Conggioi.pro264@gmail.com",
+                            Name = "Nguyễn Công Giới",
                             Password = "admin",
                             Phone = "0367093723",
                             Role = (byte)1,
@@ -156,6 +161,9 @@ namespace UI.Migrations
                     b.Property<int>("ExportBillDetailID")
                         .HasColumnType("int");
 
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -225,11 +233,16 @@ namespace UI.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("UnitID")
+                        .HasColumnType("int");
+
                     b.HasKey("ImportDetailID");
 
                     b.HasIndex("ImportBillID");
 
                     b.HasIndex("ProductID");
+
+                    b.HasIndex("UnitID");
 
                     b.ToTable("ImportDetail");
                 });
@@ -520,9 +533,17 @@ namespace UI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("UI.Model.Unit", "Unit")
+                        .WithMany("ImportDetails")
+                        .HasForeignKey("UnitID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ImportBill");
 
                     b.Navigation("Product");
+
+                    b.Navigation("Unit");
                 });
 
             modelBuilder.Entity("UI.Model.StockDetail", b =>
@@ -597,6 +618,8 @@ namespace UI.Migrations
 
             modelBuilder.Entity("UI.Model.Unit", b =>
                 {
+                    b.Navigation("ImportDetails");
+
                     b.Navigation("StockDetails");
                 });
 #pragma warning restore 612, 618

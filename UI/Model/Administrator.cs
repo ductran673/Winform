@@ -15,6 +15,10 @@ namespace UI.Model
             this.exportBills= new HashSet<ExportBill>();
         }
         public int AdministratorID { get; set; }
+        [Column(TypeName ="nvarchar(50)")]
+        public string Name { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
+        public string Title { get; set; }
         [Column(TypeName = "char(20)")]
         public string UserName { get; set; }
         [Column(TypeName = "char(16)")]

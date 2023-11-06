@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace UI.Model
 {
-    internal class ImportProduct
+    internal class ExportProduct
     {
-        public int ImportDetailID { get; set; }
+        public int ExportProductDetailID { get; set; }
         public long ProductID { get; set; }
         public string ProductName { get; set; }
         public int ProductPrice { get; set; }
         public int Quantity { get; set; }
         public int UnitID { get; set; }
-        public int TotalPrice { get { return Quantity* ProductPrice;  } }
+        public int StockID { get; set; }
+        public int TotalPrice { get { return Quantity * ProductPrice; } }
     }
 }

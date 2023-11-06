@@ -12,7 +12,6 @@ namespace UI.Model
             this.exportProductDetails = new HashSet<ExportProductDetail>();
         }
         public int ExportBillDetailID { get; set; }
-        public long ProductID { get; set; }
         public int ExportBillID { get; set; }
         public ExportBill ExportBill { get; set; }
         public ICollection<ExportProductDetail> exportProductDetails { get; set; }

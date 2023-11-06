@@ -15,6 +15,8 @@ namespace UI
         private int IDADMIN;
         private int UnitID;
         private int total;
+        public event EventHandler addBill;
+
         public ImportForm()
         {
             InitializeComponent();
@@ -50,11 +52,15 @@ namespace UI
         {
             productID = Convert.ToInt64(comboBoxProduct.SelectedValue);
             productName = comboBoxProduct.Text;
-            importProducts.Add(new ImportProduct { ProductID = productID, ProductName = productName, PriceProduct = Convert.ToInt32(maskedTextBoxPrice.Text), Quantity = Convert.ToInt32(maskedTextBoxQuantity.Text), UnitID = UnitID});
+            importProducts.Add(new ImportProduct { ProductID = productID, ProductName = productName, ProductPrice = Convert.ToInt32(maskedTextBoxPrice.Text), Quantity = Convert.ToInt32(maskedTextBoxQuantity.Text), UnitID = UnitID});
             dataTable.Rows.Add(productID, productName, Convert.ToInt32(maskedTextBoxPrice.Text), Convert.ToInt32(maskedTextBoxQuantity.Text));
             dataGridView1.DataSource = dataTable;
             toolTip1.Show("Thêm thành công", button1, button1.Width, 0, 1000);
-            foreach(ImportProduct i in importProducts)
+            //null cho 2 trường giá và số lượng
+            maskedTextBoxQuantity.Text = null;
+            maskedTextBoxPrice.Text = null;
+            // tính tổng giá tiền và update
+            foreach (ImportProduct i in importProducts)
             {
                 total += i.TotalPrice;
             }
@@ -99,46 +105,73 @@ namespace UI
             int rowIndex = dataGridView1.CurrentCell.RowIndex;
             dataGridView1.Rows.RemoveAt(rowIndex);
             importProducts.RemoveAt(rowIndex);
-            toolTip1.Show("remove: " + importProducts.Count.ToString(), buttonDelete, 0, 0, 2000);
             if(importProducts.Count == 0)
             {
                 buttonDelete.Enabled =false;
+                textBox1.Text = null; return;
             }
+            foreach (ImportProduct i in importProducts)
+            {
+                total += i.TotalPrice;
+            }
+            textBox1.Text = total.ToString() + "đ";
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Customer customer = new Customer();
-            customer.Name = maskedTextBoxSuplier.Text;
-            customer.Address = maskedTextBoxAddress.Text;
-            customer.Email = maskedTextBoxEmail.Text;
-            customer.Phone = maskedTextBoxPhone.Text;
-            db.Customers.Add(customer);
-            db.SaveChanges();
-            ImportBill importBill = new ImportBill();
-            importBill.Description = maskedTextBoxDescription.Text.ToString();
-            importBill.AdministratorID = 1;
-            importBill.StockID = stockID;
-            importBill.DateTimeDate = dateTimePickerCreateBill.Value.Date;
-            importBill.CustomerID = customer.CustomerID;
-            db.ImportBills.Add(importBill);
-            db.SaveChanges();
-            foreach (ImportProduct import in importProducts)
+            try
             {
-                ImportDetail importDetail = new ImportDetail();
-                importDetail.ProductID = import.ProductID;
-                importDetail.Price = import.PriceProduct;
-                importDetail.Quantity = import.Quantity;
-                importDetail.ImportBillID = importBill.ImportBillID;
-                db.ImportDetail.Add(importDetail);
+                Customer customer = new Customer();
+                customer.Name = maskedTextBoxSuplier.Text;
+                customer.Address = maskedTextBoxAddress.Text;
+                customer.Email = maskedTextBoxEmail.Text;
+                customer.Phone = maskedTextBoxPhone.Text;
+                db.Customers.Add(customer);
                 db.SaveChanges();
-                StockDetail stockDetail = new StockDetail();
-                stockDetail.StockID = stockID;
-                stockDetail.ProductID = import.ProductID;
-                stockDetail.UnitID = import.UnitID;
-                stockDetail.Quantity = import.Quantity;
-                db.StockDetails.Add(stockDetail);
+                ImportBill importBill = new ImportBill();
+                importBill.Description = maskedTextBoxDescription.Text.ToString();
+                importBill.AdministratorID = 1;
+                importBill.StockID = stockID;
+                importBill.DateTimeDate = dateTimePickerCreateBill.Value.Date;
+                importBill.CustomerID = customer.CustomerID;
+                db.ImportBills.Add(importBill);
                 db.SaveChanges();
+                foreach (ImportProduct import in importProducts)
+                {
+                    ImportDetail importDetail = new ImportDetail();
+                    importDetail.ProductID = import.ProductID;
+                    importDetail.Price = import.ProductPrice;
+                    importDetail.Quantity = import.Quantity;
+                    importDetail.ImportBillID = importBill.ImportBillID;
+                    db.ImportDetail.Add(importDetail);
+                    db.SaveChanges();
+                    StockDetail stockDetail = new StockDetail();
+                    stockDetail.StockID = stockID;
+                    stockDetail.ProductID = import.ProductID;
+                    stockDetail.UnitID = import.UnitID;
+                    stockDetail.Quantity = import.Quantity;
+                    db.StockDetails.Add(stockDetail);
+                    db.SaveChanges();
+                }
+                addBill?.Invoke(this, EventArgs.Empty);
+                toolTip1.Show("Tạo thành công", button2, button2.Width, 0, 2000);
+                // null dữ liệu
+                maskedTextBoxSuplier.Text = null;
+                maskedTextBoxAddress.Text = null;
+                maskedTextBoxEmail.Text = null;
+                maskedTextBoxPhone.Text = null;
+                maskedTextBoxDescription.Text = null;
+                // null datagridview
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    dataGridView1.Rows.RemoveAt(dataGridView1.Rows.Count - 1);
+                }
+                importProducts.Clear();
+
+            }
+            catch (Exception err)
+            {
+                toolTip1.Show("Error: " + err.Message, button2, button2.Width, 0, 2000);
             }
         }
 

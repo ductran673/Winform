@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UI;
 
@@ -11,9 +12,11 @@ using UI;
 namespace UI.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231106011328_m3")]
+    partial class m3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,10 +50,6 @@ namespace UI.Migrations
                     b.Property<byte>("Role")
                         .HasColumnType("tinyint");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("char(20)");
@@ -68,7 +67,6 @@ namespace UI.Migrations
                             Password = "admin",
                             Phone = "0367093723",
                             Role = (byte)1,
-                            Title = "Quản lý",
                             UserName = "admin"
                         });
                 });

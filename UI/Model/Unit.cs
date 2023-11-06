@@ -11,10 +11,13 @@ namespace UI.Model
     {
         public Unit() {
             this.StockDetails = new HashSet<StockDetail>();
+            this.ImportDetails= new HashSet<ImportDetail>();
+
         }
         public int UnitID { get; set; }
         [Column(TypeName = "nvarchar(20)")]
         public string Name { get; set; }
         public ICollection<StockDetail> StockDetails { get; set; }
+        public ICollection<ImportDetail> ImportDetails { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UI;
 
@@ -11,9 +12,11 @@ using UI;
 namespace UI.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231105071511_m1")]
+    partial class m1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,10 +50,6 @@ namespace UI.Migrations
                     b.Property<byte>("Role")
                         .HasColumnType("tinyint");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("char(20)");
@@ -68,7 +67,6 @@ namespace UI.Migrations
                             Password = "admin",
                             Phone = "0367093723",
                             Role = (byte)1,
-                            Title = "Quản lý",
                             UserName = "admin"
                         });
                 });
@@ -142,6 +140,9 @@ namespace UI.Migrations
                     b.Property<int>("ExportBillID")
                         .HasColumnType("int");
 
+                    b.Property<long>("ProductID")
+                        .HasColumnType("bigint");
+
                     b.HasKey("ExportBillDetailID");
 
                     b.HasIndex("ExportBillID");
@@ -158,9 +159,6 @@ namespace UI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExportProductDetailID"));
 
                     b.Property<int>("ExportBillDetailID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")

@@ -98,6 +98,8 @@ namespace UI
                 {
                     AdministratorID = 1,
                     Email = "Conggioi.pro264@gmail.com",
+                    Title = "Quản lý",
+                    Name = "Nguyễn Công Giới",
                     Password = "admin",
                     UserName = "admin",
                     Phone = "0367093723",
