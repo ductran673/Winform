@@ -94,14 +94,14 @@
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(224, 26);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(202, 26);
             this.toolStripMenuItem5.Text = "Quản lý xuất kho";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // chiTiếtXuấtKhoToolStripMenuItem
             // 
             this.chiTiếtXuấtKhoToolStripMenuItem.Name = "chiTiếtXuấtKhoToolStripMenuItem";
-            this.chiTiếtXuấtKhoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.chiTiếtXuấtKhoToolStripMenuItem.Size = new System.Drawing.Size(202, 26);
             this.chiTiếtXuấtKhoToolStripMenuItem.Text = "Chi tiết xuất kho";
             this.chiTiếtXuấtKhoToolStripMenuItem.Click += new System.EventHandler(this.chiTiếtXuấtKhoToolStripMenuItem_Click);
             // 
@@ -109,6 +109,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1482, 803);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

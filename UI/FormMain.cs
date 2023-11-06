@@ -30,18 +30,19 @@ namespace UI
             LoginForm loginForm= new LoginForm();
             if(loginForm.ShowDialog() == DialogResult.OK)
             {
-
             }
             else
             {
 
             }
-            this.IsMdiContainer = true;
+            
+            
+            
 
         }
-
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
+            this.IsMdiContainer = true;
             if (Utility.isOpeningForm("ProcessImportDetail")) return;
             ProcessImportDetail form = new ProcessImportDetail();
             form.MdiParent = this;
@@ -50,6 +51,7 @@ namespace UI
 
         private void toolStripMenuItem6_Click(object sender, EventArgs e)
         {
+            this.IsMdiContainer = true;
             if (Utility.isOpeningForm("ImportForm")) return;
             ImportForm form = new ImportForm();
             form.MdiParent = this;
@@ -58,6 +60,7 @@ namespace UI
 
         private void toolStripMenuItem5_Click(object sender, EventArgs e)
         {
+            this.IsMdiContainer = true;
             if (Utility.isOpeningForm("ExportManage")) return;
             var form = new ExportManage();
             form.MdiParent = this;
@@ -66,10 +69,13 @@ namespace UI
 
         private void chiTiếtXuấtKhoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.IsMdiContainer = true;
             if (Utility.isOpeningForm("ProcessExportDetail")) return;
             var form = new ProcessExportDetail();
             form.MdiParent = this;
             form.Show();
         }
+
+        
     }
 }

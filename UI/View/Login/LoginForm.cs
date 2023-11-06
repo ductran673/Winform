@@ -54,6 +54,7 @@ namespace UI
                 {
                     var form = new LoginFailed();
                     form.ShowDialog();
+                    textBox1.Focus();
                 }
             }
         }
@@ -61,6 +62,22 @@ namespace UI
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = false;
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                button1_Click(sender, e);
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                button1_Click(sender, e);
+            }
         }
     }
 }

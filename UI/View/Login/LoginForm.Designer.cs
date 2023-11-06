@@ -95,6 +95,7 @@
             this.textBox1.Size = new System.Drawing.Size(328, 40);
             this.textBox1.TabIndex = 4;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // textBox2
             // 
@@ -106,6 +107,7 @@
             this.textBox2.Size = new System.Drawing.Size(328, 40);
             this.textBox2.TabIndex = 5;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // LoginForm
             // 
