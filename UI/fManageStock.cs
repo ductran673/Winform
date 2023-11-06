@@ -66,6 +66,28 @@ namespace UI
             cbStock_SelectedIndexChanged(sender, e);
         }
 
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            StockDetail stockDetail = new StockDetail();
+            Product product = new Product();
+            Unit unit = new Unit();
+            string nameunit;
+            nameunit = unit.Name;
+            ;
+            using (var db = new Context())
+            {
+                dataGridView2.DataSource = db.StockDetails.Where(c => c.StockID == stockID).Select(c => new
+                {
+                    stockID,
+                    product.ProductID,
+                    product.Name,
+                    product.Description,
+                    nameunit
+                }).ToList();
+                //dataGridView2.DataSource = db.StockDetails.Where(p => p.StockID == stockID).ToList();
+            }
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Xóa kho
