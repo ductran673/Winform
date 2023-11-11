@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +19,15 @@ namespace UI
     public partial class fManageStock : Form
     {
         private long stockID;
+        private long StockID;
+        private int ProductID;
+        private Context db = new Context();
+        DataTable table = new DataTable();
+        //SqlConnection connection;
+        //SqlCommand command;
+        //string str = @"Data Source=MSI\MINHNGO;Initial Catalog=QLKH;Integrated Security=True";
+        //SqlDataAdapter adapter = new SqlDataAdapter();
+
 
         public fManageStock()
         {
@@ -66,28 +77,6 @@ namespace UI
             cbStock_SelectedIndexChanged(sender, e);
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            StockDetail stockDetail = new StockDetail();
-            Product product = new Product();
-            Unit unit = new Unit();
-            string nameunit;
-            nameunit = unit.Name;
-            ;
-            using (var db = new Context())
-            {
-                dataGridView2.DataSource = db.StockDetails.Where(c => c.StockID == stockID).Select(c => new
-                {
-                    stockID,
-                    product.ProductID,
-                    product.Name,
-                    product.Description,
-                    nameunit
-                }).ToList();
-                //dataGridView2.DataSource = db.StockDetails.Where(p => p.StockID == stockID).ToList();
-            }
-        }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //Xóa kho
@@ -95,7 +84,7 @@ namespace UI
             {
                 try
                 {
-                    long StockID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["StockID"].Value);
+                    long StockID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["IDKho"].Value);
                     using (var db = new Context())
                     {
                         Stock stock = db.Stocks.Single(c => c.StockID == StockID);
@@ -121,9 +110,40 @@ namespace UI
                 {
                     return;
                 }
-                fEditStock f = new fEditStock((Convert.ToInt64(dataGridView1.Rows[e.RowIndex].Cells["StockID"].Value)));
+                fEditStock f = new fEditStock((Convert.ToInt64(dataGridView1.Rows[e.RowIndex].Cells["IDKho"].Value)));
                 f.MdiParent = this.MdiParent;
                 f.Show();
+            }
+        }
+
+        //void loadDataStockDetail()
+        //{
+        //    command = connection.CreateCommand();
+        //    command.CommandText = "select StockDetails.StockDetailID, StockDetails.ProductID, Products.Name, Products.Description, Units.Name from Products, StockDetails,Units where StockDetails.ProductID = Products.ProductID and StockDetails.UnitID = Units.UnitID";
+        //    //command.CommandText = "select * from StockDetails";
+        //    adapter.SelectCommand = command;
+        //    table.Clear();
+        //    adapter.Fill(table);
+        //    dataGridView2.DataSource = table;
+        //}
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //connection = new SqlConnection(str);
+            //connection.Open();
+            //loadDataStockDetail();
+            using (var db = new Context())
+            {
+                StockID = Convert.ToInt64(dataGridView1.Rows[e.RowIndex].Cells["IDKho"].Value);
+                //ProductID = db.StockDetails.Where(x => x.StockID == StockID).Select(x => x.StockID);
+                dataGridView2.DataSource = db.StockDetails.Where(x => x.StockID == StockID).Select(x => new
+                {
+                    x.StockID,
+                    x.ProductID,
+                    x.Product.Name,
+                    x.Product.Description,
+                    x.Product.Price
+                }).ToList();
             }
         }
     }
