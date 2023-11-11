@@ -1,4 +1,4 @@
-﻿namespace UI
+namespace UI
 {
     partial class fManageStock
     {
@@ -34,16 +34,18 @@
             cbStock = new ComboBox();
             label2 = new Label();
             dataGridView1 = new DataGridView();
-            dataGridView2 = new DataGridView();
-            ProductID = new DataGridViewTextBoxColumn();
-            NameProduct = new DataGridViewTextBoxColumn();
-            Description = new DataGridViewTextBoxColumn();
-            NameUnit = new DataGridViewTextBoxColumn();
-            Quantity = new DataGridViewTextBoxColumn();
-            lbsoluongkho = new Label();
-            toolTip1 = new ToolTip(components);
+            IDKho = new DataGridViewTextBoxColumn();
+            StockName = new DataGridViewTextBoxColumn();
+            StockAddress = new DataGridViewTextBoxColumn();
             Edit = new DataGridViewButtonColumn();
             Delete = new DataGridViewButtonColumn();
+            dataGridView2 = new DataGridView();
+            lbsoluongkho = new Label();
+            toolTip1 = new ToolTip(components);
+            MaKho = new DataGridViewTextBoxColumn();
+            MaSP = new DataGridViewTextBoxColumn();
+            TenSP = new DataGridViewTextBoxColumn();
+            MoTaSP = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
@@ -93,79 +95,43 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Edit, Delete });
-            dataGridView1.Location = new Point(25, 92);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { IDKho, StockName, StockAddress, Edit, Delete });
+            dataGridView1.Location = new Point(0, 92);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(436, 439);
+            dataGridView1.Size = new Size(611, 439);
             dataGridView1.TabIndex = 4;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // dataGridView2
+            // IDKho
             // 
-            dataGridView2.AllowUserToAddRows = false;
-            dataGridView2.AllowUserToDeleteRows = false;
-            dataGridView2.AllowUserToOrderColumns = true;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { ProductID, NameProduct, Description, NameUnit, Quantity });
-            dataGridView2.Location = new Point(572, 92);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.RowTemplate.Height = 29;
-            dataGridView2.Size = new Size(605, 439);
-            dataGridView2.TabIndex = 5;
+            IDKho.DataPropertyName = "StockID";
+            IDKho.HeaderText = "Mã Kho";
+            IDKho.MinimumWidth = 6;
+            IDKho.Name = "IDKho";
+            IDKho.Width = 89;
             // 
-            // ProductID
+            // StockName
             // 
-            ProductID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            ProductID.HeaderText = "Mã Sản Phẩm";
-            ProductID.MinimumWidth = 6;
-            ProductID.Name = "ProductID";
-            ProductID.Width = 128;
+            StockName.DataPropertyName = "Name";
+            StockName.HeaderText = "Tên Kho";
+            StockName.MinimumWidth = 6;
+            StockName.Name = "StockName";
+            StockName.Width = 91;
             // 
-            // NameProduct
+            // StockAddress
             // 
-            NameProduct.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            NameProduct.HeaderText = "Tên Sản Phẩm";
-            NameProduct.MinimumWidth = 6;
-            NameProduct.Name = "NameProduct";
-            NameProduct.Width = 130;
-            // 
-            // Description
-            // 
-            Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Description.HeaderText = "Mô Tả";
-            Description.MinimumWidth = 6;
-            Description.Name = "Description";
-            Description.Width = 80;
-            // 
-            // NameUnit
-            // 
-            NameUnit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            NameUnit.HeaderText = "Tên Đơn Vị";
-            NameUnit.MinimumWidth = 6;
-            NameUnit.Name = "NameUnit";
-            NameUnit.Width = 110;
-            // 
-            // Quantity
-            // 
-            Quantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Quantity.HeaderText = "Số Lượng";
-            Quantity.MinimumWidth = 6;
-            Quantity.Name = "Quantity";
-            Quantity.Width = 101;
-            // 
-            // lbsoluongkho
-            // 
-            lbsoluongkho.AutoSize = true;
-            lbsoluongkho.Location = new Point(12, 60);
-            lbsoluongkho.Name = "lbsoluongkho";
-            lbsoluongkho.Size = new Size(108, 20);
-            lbsoluongkho.TabIndex = 6;
-            lbsoluongkho.Text = "Số lượng kho : ";
+            StockAddress.DataPropertyName = "Address";
+            StockAddress.HeaderText = "Địa chỉ";
+            StockAddress.MinimumWidth = 6;
+            StockAddress.Name = "StockAddress";
+            StockAddress.Width = 84;
             // 
             // Edit
             // 
@@ -187,11 +153,68 @@
             Delete.UseColumnTextForButtonValue = true;
             Delete.Width = 59;
             // 
+            // dataGridView2
+            // 
+            dataGridView2.AllowUserToAddRows = false;
+            dataGridView2.AllowUserToDeleteRows = false;
+            dataGridView2.AllowUserToOrderColumns = true;
+            dataGridView2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { MaKho, MaSP, TenSP, MoTaSP });
+            dataGridView2.Location = new Point(616, 92);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 51;
+            dataGridView2.RowTemplate.Height = 29;
+            dataGridView2.Size = new Size(610, 439);
+            dataGridView2.TabIndex = 5;
+            // 
+            // lbsoluongkho
+            // 
+            lbsoluongkho.AutoSize = true;
+            lbsoluongkho.Location = new Point(12, 60);
+            lbsoluongkho.Name = "lbsoluongkho";
+            lbsoluongkho.Size = new Size(108, 20);
+            lbsoluongkho.TabIndex = 6;
+            lbsoluongkho.Text = "Số lượng kho : ";
+            // 
+            // MaKho
+            // 
+            MaKho.DataPropertyName = "StockID";
+            MaKho.HeaderText = "Mã Kho";
+            MaKho.MinimumWidth = 6;
+            MaKho.Name = "MaKho";
+            MaKho.Width = 125;
+            // 
+            // MaSP
+            // 
+            MaSP.DataPropertyName = "ProductID";
+            MaSP.HeaderText = "Mã Sản Phẩm";
+            MaSP.MinimumWidth = 6;
+            MaSP.Name = "MaSP";
+            MaSP.Width = 125;
+            // 
+            // TenSP
+            // 
+            TenSP.DataPropertyName = "Name";
+            TenSP.HeaderText = "Tên Sản Phẩm";
+            TenSP.MinimumWidth = 6;
+            TenSP.Name = "TenSP";
+            TenSP.Width = 125;
+            // 
+            // MoTaSP
+            // 
+            MoTaSP.DataPropertyName = "Description";
+            MoTaSP.HeaderText = "Mô Tả Sản Phẩm";
+            MoTaSP.MinimumWidth = 6;
+            MoTaSP.Name = "MoTaSP";
+            MoTaSP.Width = 125;
+            // 
             // fManageStock
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1177, 532);
+            AutoSize = true;
+            ClientSize = new Size(1226, 532);
             Controls.Add(lbsoluongkho);
             Controls.Add(dataGridView2);
             Controls.Add(dataGridView1);
@@ -218,14 +241,16 @@
         private Label label2;
         private DataGridView dataGridView1;
         private DataGridView dataGridView2;
-        private DataGridViewTextBoxColumn ProductID;
-        private DataGridViewTextBoxColumn NameProduct;
-        private DataGridViewTextBoxColumn Description;
-        private DataGridViewTextBoxColumn NameUnit;
-        private DataGridViewTextBoxColumn Quantity;
         private Label lbsoluongkho;
         private ToolTip toolTip1;
+        private DataGridViewTextBoxColumn IDKho;
+        private DataGridViewTextBoxColumn StockName;
+        private DataGridViewTextBoxColumn StockAddress;
         private DataGridViewButtonColumn Edit;
         private DataGridViewButtonColumn Delete;
+        private DataGridViewTextBoxColumn MaKho;
+        private DataGridViewTextBoxColumn MaSP;
+        private DataGridViewTextBoxColumn TenSP;
+        private DataGridViewTextBoxColumn MoTaSP;
     }
 }
