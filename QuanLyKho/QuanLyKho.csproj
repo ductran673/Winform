@@ -1,0 +1,127 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.SqlServer.Server" Version="1.0.0" />
+    <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.18" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="StockManageDataSet.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StockManageDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="StockManageDataSet1.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StockManageDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="StockManageDataSet2.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StockManageDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="StockManageDataSet3.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StockManageDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="StockManageDataSet4.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StockManageDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="StockManageDataSet5.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StockManageDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="StockManageDataSet6.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StockManageDataSet6.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="StockManageDataSet7.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StockManageDataSet7.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="View\AddProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\EditProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\ProductManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migration\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="StockManageDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StockManageDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="StockManageDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StockManageDataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="StockManageDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StockManageDataSet2.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="StockManageDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StockManageDataSet3.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="StockManageDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StockManageDataSet4.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="StockManageDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StockManageDataSet5.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="StockManageDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StockManageDataSet6.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="StockManageDataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StockManageDataSet7.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
